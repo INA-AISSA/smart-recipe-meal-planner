@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+// This component allows users to input ingredients and displays them as tags.
+// let user type ingredient like egg, rice etc and it only collect user input doesn't display anything
 export default function IngredientInput() {
   const [input, setInput] = useState("");
   const [ingredients, setIngredients] = useState([]);

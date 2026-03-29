@@ -1,56 +1,71 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
-import GroceryList from "../components/GroceryList";
 
-const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+export default function MealPlanner({ plan = [], setPlan }) {
+  const [day, setDay] = useState("");
+  const [meal, setMeal] = useState("");
+  const [desc, setDesc] = useState("");
 
-export default function MealPlanner() {
-  const [plan, setPlan] = useState({});
+  const addMeal = () => {
+    console.log("CLICKED"); // DEBUG
 
-  const handleChange = (day, value) => {
-    setPlan({ ...plan, [day]: value });
+    if (!day.trim() || !meal.trim()) {
+      alert("Please enter day and meal");
+      return;
+    }
+
+    const newMeal = {
+      day,
+      meal,
+      desc,
+    };
+
+    setPlan([...plan, newMeal]);
+
+    // reset
+    setDay("");
+    setMeal("");
+    setDesc("");
   };
 
   return (
-    <>
-      <Navbar />
+    <div className="p-6">
+      <h2 className="text-2xl font-bold mb-4">Meal Planner</h2>
 
-      <div className="min-h-screen bg-gradient-to-br from-green-50 to-orange-50 py-12">
-        <div className="max-w-6xl mx-auto px-4">
-          
-          <h1 className="text-4xl font-bold text-green-700 mb-4">
-            Weekly Meal Planner
-          </h1>
+      <input
+        value={day}
+        onChange={(e) => setDay(e.target.value)}
+        placeholder="Day"
+        className="border p-2 mb-2 w-full"
+      />
 
-          <p className="text-gray-600 mb-10">
-            Plan your meals for the week and generate your grocery list automatically.
-          </p>
+      <input
+        value={meal}
+        onChange={(e) => setMeal(e.target.value)}
+        placeholder="Meal"
+        className="border p-2 mb-2 w-full"
+      />
 
-          {/* Planner Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
-            {days.map((day) => (
-              <div
-                key={day}
-                className="bg-white rounded-2xl shadow-md p-5 hover:shadow-lg transition"
-              >
-                <h2 className="text-lg font-semibold text-orange-600 mb-3">
-                  {day}
-                </h2>
+      <input
+        value={desc}
+        onChange={(e) => setDesc(e.target.value)}
+        placeholder="Description"
+        className="border p-2 mb-2 w-full"
+      />
 
-                <input
-                  type="text"
-                  placeholder="e.g. Pasta, Rice, Omelette"
-                  value={plan[day] || ""}
-                  onChange={(e) => handleChange(day, e.target.value)}
-                  className="w-full border-2 border-green-200 rounded-lg px-4 py-2 focus:outline-none focus:border-orange-400"
-                />
-              </div>
-            ))}
+      <button
+        onClick={addMeal}
+        className="bg-green-600 text-white px-4 py-2 rounded"
+      >
+        Add Meal
+      </button>
+
+      <div className="mt-4">
+        {plan.map((item, i) => (
+          <div key={i}>
+            {item.day} - {item.meal}
           </div>
-
-          <GroceryList plan={plan} />
-        </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 }

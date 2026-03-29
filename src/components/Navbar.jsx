@@ -12,12 +12,20 @@ export default function Navbar() {
           Home
         </Link>
 
+        <Link to="/ingredients" className="hover:text-orange-500">
+          Find Recipes
+        </Link>
+
+        <Link to="/recipes" className="hover:text-orange-500">
+          Recipes
+        </Link>
+
         <Link to="/meal-planner" className="hover:text-orange-500">
           Meal Planner
         </Link>
 
-        <Link to="/recipe" className="hover:text-orange-500">
-          Recipe
+        <Link to="/grocery-list" className="hover:text-orange-500">
+          Grocery List
         </Link>
       </div>
     </nav>

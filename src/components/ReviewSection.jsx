@@ -58,7 +58,7 @@ export default function ReviewSection() {
         <div className="absolute top-4 right-4 bg-green-100 text-green-700 px-4 py-2 rounded-lg shadow animate-bounce">
           Thanks for your feedback! 😊
         </div>
-      )}
+      )}            
     </div>
   );
 }

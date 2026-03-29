@@ -1,12 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar";
 
 function Home() {
   const navigate = useNavigate();
 
   return (
     <>
-      <Navbar />
+      
       <div className="min-h-[calc(100vh-80px)] bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 flex items-center">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-8">
           
